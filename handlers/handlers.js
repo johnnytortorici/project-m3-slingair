@@ -8,7 +8,10 @@ const handleFlight = (req, res) => {
     } else {
         res.status(404).json({ status: '404', error: 'Flight number not found!' });
     }
-    
 };
 
-module.exports = { handleFlight };
+const handleUserConfirm = (req, res) => {
+    res.status(200).json(req.body);
+};
+
+module.exports = { handleFlight, handleUserConfirm };

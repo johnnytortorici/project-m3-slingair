@@ -21,7 +21,7 @@ const renderSeats = (seatList) => {
             const seatOccupied = `<li><label class="seat"><span id="${seatNumber}" class="occupied">${seatNumber}</span></label></li>`
             const seatAvailable = `<li><label class="seat"><input type="radio" name="seat" value="${seatNumber}" /><span id="${seatNumber}" class="avail">${seatNumber}</span></label></li>`        
             
-            // TODO: render the seat availability based on the data...
+            // DONE: render the seat availability based on the data...
             const thisSeat = seatList.find((seat) => { return seat.id === seatNumber });
             // if thisSeat is avail, render seatAvailable, else render seatOccupied
             (thisSeat.isAvailable) ? seat.innerHTML = seatAvailable : seat.innerHTML = seatOccupied;
@@ -46,7 +46,6 @@ const renderSeats = (seatList) => {
     });
 }
 
-
 const toggleFormContent = (event) => {
     const flightNumber = flightInput.value;
     console.log('toggleFormContent: ', flightNumber);
@@ -60,11 +59,10 @@ const toggleFormContent = (event) => {
         alert('Flight number must be SA###');
     }
     
-    // TODO: contact the server to get the seating availability
-    //      - only contact the server if the flight number is this format 'SA###'.
-    //      - Do I need to create an error message if the number is not valid?
-    
-    // TODO: Pass the response data to renderSeats to create the appropriate seat-type.
+    // DONE: contact the server to get the seating availability
+    //      DONE - only contact the server if the flight number is this format 'SA###'.
+    //      DONE - Do I need to create an error message if the number is not valid?
+    // DONE: Pass the response data to renderSeats to create the appropriate seat-type.
     
 }
 
@@ -74,14 +72,18 @@ const handleConfirmSeat = (event) => {
     fetch('/users', {
         method: 'POST',
         body: JSON.stringify({
-            'givenName': document.getElementById('givenName').value
+            'givenName': document.getElementById('givenName').value,
+            'surname': document.getElementById('surname').value,
+            'email': document.getElementById('email').value,
+            'selection': selection
         }),
         headers: {
             'Accept': 'application/json',
             "Content-Type": "application/json"
         }
     })
-
+    .then((res) => res.json())
+    .then((data) => console.log(data));
 }
 
 flightInput.addEventListener('blur', toggleFormContent);

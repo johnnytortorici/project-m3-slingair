@@ -24,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 
 // endpoints
 app.get('/flights/:flightNum', handlers.handleFlight);
+app.post('/users', handlers.handleUserConfirm);
 
 app.use((req, res) => res.send('Not Found'));
 app.listen(8000, () => console.log(`Listening on port 8000`));
