@@ -3,6 +3,7 @@ const seatsDiv = document.getElementById('seats-section');
 const confirmButton = document.getElementById('confirm-button');
 
 let selection = '';
+let flightNumber = '';
 
 const renderSeats = (seatList) => {
     document.querySelector('.form-container').style.display = 'block';
@@ -47,7 +48,7 @@ const renderSeats = (seatList) => {
 }
 
 const toggleFormContent = (event) => {
-    const flightNumber = flightInput.value;
+    flightNumber = flightInput.value;
     console.log('toggleFormContent: ', flightNumber);
     if (flightNumber.startsWith('SA')) {
         fetch(`/flights/${flightNumber}`)
@@ -75,6 +76,7 @@ const handleConfirmSeat = (event) => {
             'givenName': document.getElementById('givenName').value,
             'surname': document.getElementById('surname').value,
             'email': document.getElementById('email').value,
+            'flightNum': flightNumber,
             'selection': selection
         }),
         headers: {
