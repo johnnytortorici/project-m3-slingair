@@ -4,22 +4,26 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const { flights } = require('./test-data/flightSeating');
+const handlers = require('./handlers/handlers');
 
-express()
-  .use(function (req, res, next) {
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept'
-    );
-    next();
-  })
-  .use(morgan('dev'))
-  .use(express.static('public'))
-  .use(bodyParser.json())
-  .use(express.urlencoded({ extended: false }))
+const app = express();
 
-  // endpoints
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept'
+  );
+  next();
+});
 
-  .use((req, res) => res.send('Not Found'))
-  .listen(8000, () => console.log(`Listening on port 8000`));
+app.use(morgan('dev'));
+app.use(express.static('public'));
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: false }));
+
+// endpoints
+app.get('/flights/:flightNum', handlers.handleFlight);
+
+app.use((req, res) => res.send('Not Found'));
+app.listen(8000, () => console.log(`Listening on port 8000`));
