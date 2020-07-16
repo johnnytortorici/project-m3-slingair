@@ -24,7 +24,13 @@ main {
     background: var(--alabama-crimson);
     height: 120px;
     padding: var(--page-padding) 18px;
+    text-align: right;
 }
+.header a {
+    color: #fff;
+    padding-left: 20px;
+}
+.header a:hover { text-decoration: none }
 .content {
     flex: 1 0 auto;
     height: 100%;
