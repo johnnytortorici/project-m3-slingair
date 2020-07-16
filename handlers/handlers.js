@@ -1,5 +1,6 @@
 const { flights } = require('../test-data/flightSeating');
 const { reservations } = require('../test-data/reservations');
+const { v4: uuidv4 } = require('uuid');
 
 const handleFlights = (req, res) => {
     res.status(200).json({ flights: Object.keys(flights) });
@@ -37,6 +38,16 @@ const handleUserSubmit = (req, res) => {
     const seatObj = flights[flightNum].find((seat) => { return seat.id === selection });
     if (seatObj.isAvailable) {
         seatObj.isAvailable = false;
+        const id = uuidv4();
+        // add reservation to reservations "db"
+        reservations.push({
+            id: id,
+            flight: flightNum,
+            seat: selection,
+            givenName: givenName,
+            surname: surname,
+            email: email,
+        });
         res.status(201).json({ givenName, surname, email, flightNum, selection });
     } else {
         res.status(400).json({ error: 'Sorry but that seat is already taken!' });
