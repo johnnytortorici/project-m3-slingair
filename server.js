@@ -27,7 +27,7 @@ app.get('/', (req, res) => res.status(200).redirect('/seat-select'));
 app.get('/flights', handlers.handleFlights);
 app.get('/flights/:flightNum', handlers.handleFlight);
 app.get('/view-reservation/:id', handlers.handleViewReservation);
-app.get('/admin', handlers.handleAdmin);
+app.get('/admin/reservations', handlers.handleAdmin);
 app.post('/users', handlers.handleUserSubmit);
 
 app.use((req, res) => res.send('Not Found'));

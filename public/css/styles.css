@@ -39,6 +39,22 @@ main {
 .content.confirmation {
     margin: 200px auto 120px;
 }
+.admin {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 50px;
+}
+.admin h2 {
+    width: 100%;
+}
+.admin ul {
+    padding: 20px;
+}
+.admin .reservations {
+    display: flex;
+    flex-wrap: wrap;
+}
 .footer-logo {
     background: url(../images/air-sling.png) no-repeat;
     background-size: contain;
