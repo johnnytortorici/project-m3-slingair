@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
 // endpoints
+app.get('/flights', handlers.handleFlights);
 app.get('/flights/:flightNum', handlers.handleFlight);
 app.post('/users', handlers.handleUserSubmit);
 

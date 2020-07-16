@@ -1,5 +1,9 @@
 const { flights } = require('../test-data/flightSeating');
 
+const handleFlights = (req, res) => {
+    res.status(200).json({ flights: Object.keys(flights) });
+};
+
 const handleFlight = (req, res) => {
     const _flightNum = req.params.flightNum;
     const seatList = flights[_flightNum];
@@ -17,4 +21,4 @@ const handleUserSubmit = (req, res) => {
     res.status(201).json({ givenName, surname, email, flightNum, selection })
 };
 
-module.exports = { handleFlight, handleUserSubmit };
+module.exports = { handleFlights, handleFlight, handleUserSubmit };

@@ -5,6 +5,24 @@ const confirmButton = document.getElementById('confirm-button');
 let selection = '';
 let flightNumber = '';
 
+const renderFlights = () => {
+    fetch('/flights')
+    .then((res) => res.json())
+    .then((data) => {
+        // assign array of flights
+        const flights = data.flights;
+        // grab select element
+        const flightSelect = document.getElementById('flight');
+        // loop through array and append select options
+        flights.forEach((flight) => {
+            let flightOption = document.createElement('option');
+            flightOption.value = flight;
+            flightOption.innerText = flight;
+            flightSelect.appendChild(flightOption);
+        });
+    });
+};
+
 const renderSeats = (seatList) => {
     document.querySelector('.form-container').style.display = 'block';
 
@@ -92,4 +110,5 @@ const handleConfirmSeat = (event) => {
     });
 }
 
-flightInput.addEventListener('blur', toggleFormContent);
+// renders list of flights from "db"
+renderFlights();

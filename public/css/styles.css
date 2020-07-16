@@ -56,7 +56,7 @@ h1, h2, h3, label, button {
     font-size: 32px;
     text-align: center;
 }
-p, a, li, blockquote, input {
+p, a, li, blockquote, input, select {
     font-family: var(--content-font);
 }
 .main {
@@ -81,12 +81,12 @@ p, a, li, blockquote, input {
     padding: var(--page-padding);
     margin-bottom: var(--page-padding);
 }
-.flight-select input {
-    width: 125px;
+.flight-select select {
+    width: 210px;
     margin-left: var(--page-padding);
 }
 
-input {
+input, select {
     font-size: 24px;
     height: 42px;
     border: 2px solid var(--orange);
