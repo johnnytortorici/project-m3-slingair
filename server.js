@@ -25,6 +25,7 @@ app.use(express.urlencoded({ extended: false }));
 // endpoints
 app.get('/flights', handlers.handleFlights);
 app.get('/flights/:flightNum', handlers.handleFlight);
+app.get('/view-reservation/:id', handlers.handleViewReservation);
 app.post('/users', handlers.handleUserSubmit);
 
 app.use((req, res) => res.send('Not Found'));

@@ -1,4 +1,5 @@
 const { flights } = require('../test-data/flightSeating');
+const { reservations } = require('../test-data/reservations');
 
 const handleFlights = (req, res) => {
     res.status(200).json({ flights: Object.keys(flights) });
@@ -14,6 +15,19 @@ const handleFlight = (req, res) => {
     }
 };
 
+const handleViewReservation = (req, res) => {
+    const _id = req.params.id;
+    const thisReservation = reservations.find((reservation) => { return reservation.id === _id });
+
+    if (thisReservation !== undefined) {
+        const { givenName, surname, email, flight, seat } = thisReservation;
+        res.status(200).redirect(`/view-reservation?givenName=${givenName}&surname=${surname}&email=${email}&flightNum=${flight}&selection=${seat}`);
+    } else {
+        res.status(404).json({ status: 404, error: 'Reservation not found.' });
+    }
+    
+};
+
 const handleUserSubmit = (req, res) => {
     const { givenName, surname, email, flightNum, selection } = req.body;
     const seatObj = flights[flightNum].find((seat) => { return seat.id === selection });
@@ -25,4 +39,4 @@ const handleUserSubmit = (req, res) => {
     }
 };
 
-module.exports = { handleFlights, handleFlight, handleUserSubmit };
+module.exports = { handleFlights, handleFlight, handleViewReservation, handleUserSubmit };
