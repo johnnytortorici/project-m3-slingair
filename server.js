@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 app.use(express.urlencoded({ extended: false }));
 
 // endpoints
+app.get('/', (req, res) => res.status(200).redirect('/seat-select'));
 app.get('/flights', handlers.handleFlights);
 app.get('/flights/:flightNum', handlers.handleFlight);
 app.get('/view-reservation/:id', handlers.handleViewReservation);
