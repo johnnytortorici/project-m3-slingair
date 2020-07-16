@@ -17,8 +17,12 @@ const handleFlight = (req, res) => {
 const handleUserSubmit = (req, res) => {
     const { givenName, surname, email, flightNum, selection } = req.body;
     const seatObj = flights[flightNum].find((seat) => { return seat.id === selection });
-    seatObj.isAvailable = false;
-    res.status(201).json({ givenName, surname, email, flightNum, selection })
+    if (seatObj.isAvailable) {
+        seatObj.isAvailable = false;
+        res.status(201).json({ givenName, surname, email, flightNum, selection });
+    } else {
+        res.status(400).json({ error: 'Sorry but that seat is already taken!' });
+    }
 };
 
 module.exports = { handleFlights, handleFlight, handleUserSubmit };
