@@ -1,9 +1,10 @@
-const flightInput = document.getElementById('flight');
+const flightSelect = document.getElementById('flight');
 const seatsDiv = document.getElementById('seats-section');
 const confirmButton = document.getElementById('confirm-button');
 
 let selection = '';
 let flightNumber = '';
+let flightSelected = false;
 
 const renderFlights = () => {
     fetch('/flights')
@@ -11,8 +12,6 @@ const renderFlights = () => {
     .then((data) => {
         // assign array of flights
         const flights = data.flights;
-        // grab select element
-        const flightSelect = document.getElementById('flight');
         // loop through array and append select options
         flights.forEach((flight) => {
             let flightOption = document.createElement('option');
@@ -24,7 +23,21 @@ const renderFlights = () => {
 };
 
 const renderSeats = (seatList) => {
+    // make the form container visible
     document.querySelector('.form-container').style.display = 'block';
+
+    // reset form if previous flight was selected
+    if (flightSelected) {
+        seatsDiv.innerHTML = '';
+        if (selection !== '') {
+            document.getElementById('seat-number').innerText = '';
+            selection = '';
+            confirmButton.disabled = true;
+        }
+    }
+
+    // for future form resets
+    flightSelected = true;
 
     const alpha = ['A', 'B', 'C', 'D', 'E', 'F'];
     for (let r = 1; r < 11; r++) {
@@ -66,7 +79,7 @@ const renderSeats = (seatList) => {
 }
 
 const toggleFormContent = (event) => {
-    flightNumber = flightInput.value;
+    flightNumber = flightSelect.value;
     console.log('toggleFormContent: ', flightNumber);
     if (flightNumber.startsWith('SA')) {
         fetch(`/flights/${flightNumber}`)
@@ -75,7 +88,8 @@ const toggleFormContent = (event) => {
             (data.status === '200') ? renderSeats(data.seatList) : alert('Flight not found');
         })
     } else {
-        alert('Flight number must be SA###');
+        document.querySelector('.form-container').style.display = 'none';
+        alert('Please select a valid flight.');
     }
     
     // DONE: contact the server to get the seating availability
