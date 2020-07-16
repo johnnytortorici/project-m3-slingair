@@ -69,7 +69,7 @@ const toggleFormContent = (event) => {
 
 const handleConfirmSeat = (event) => {
     event.preventDefault();
-    // TODO: everything in here!
+    // DONE: everything in here!
     fetch('/users', {
         method: 'POST',
         body: JSON.stringify({
@@ -85,7 +85,11 @@ const handleConfirmSeat = (event) => {
         }
     })
     .then((res) => res.json())
-    .then((data) => console.log(data));
+    .then((data) => {
+        const { givenName, surname, email, flightNum, selection } = data;
+        const url = `/confirmed?givenName=${givenName}&surname=${surname}&email=${email}&flightNum=${flightNum}&selection=${selection}`;
+        window.location.href = url;
+    });
 }
 
 flightInput.addEventListener('blur', toggleFormContent);

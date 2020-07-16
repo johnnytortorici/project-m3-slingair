@@ -10,11 +10,11 @@ const handleFlight = (req, res) => {
     }
 };
 
-const handleUserConfirm = (req, res) => {
+const handleUserSubmit = (req, res) => {
     const { givenName, surname, email, flightNum, selection } = req.body;
     const seatObj = flights[flightNum].find((seat) => { return seat.id === selection });
     seatObj.isAvailable = false;
-    res.status(200).json({ givenName, surname, email, flightNum, selection });
+    res.status(201).json({ givenName, surname, email, flightNum, selection })
 };
 
-module.exports = { handleFlight, handleUserConfirm };
+module.exports = { handleFlight, handleUserSubmit };
