@@ -28,6 +28,10 @@ const handleViewReservation = (req, res) => {
     
 };
 
+const handleAdmin = (req, res) => {
+    res.status(200).json({ status: 200, reservations: reservations });
+};
+
 const handleUserSubmit = (req, res) => {
     const { givenName, surname, email, flightNum, selection } = req.body;
     const seatObj = flights[flightNum].find((seat) => { return seat.id === selection });
@@ -39,4 +43,4 @@ const handleUserSubmit = (req, res) => {
     }
 };
 
-module.exports = { handleFlights, handleFlight, handleViewReservation, handleUserSubmit };
+module.exports = { handleFlights, handleFlight, handleViewReservation, handleAdmin, handleUserSubmit };
