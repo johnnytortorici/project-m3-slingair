@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,user-scalable=0, minimal-ui" />
         <link rel="stylesheet" type="text/css" href="/css/styles.css" />
-        <title>View Reservation</title>
+        <title>View Reservations</title>
     </head>
     <body>
         <div class='main'>
@@ -15,9 +15,17 @@
                 <a href="/admin" target="_self">Admin</a>
             </header>
             <div class="flight-select search">
-                <label for="flight">Reservation No. :</label>
-                <input name="flight" id="flight" class="flight" type="text" placeholder="reservation no." />
-                <button>View Reservation</button>
+                <form onsubmit="handleSearch(event)">
+                    <label for="email">View Reservations :</label>
+                    <input name="email" id="email" type="email" placeholder="email address" required />
+                    <button>Search</button>
+                </form>
+            </div>
+
+            <div class="admin">
+                <ul class="reservations" id="reservations">
+
+                </ul>
             </div>
         </div>
         <script src="./search.js"></script>

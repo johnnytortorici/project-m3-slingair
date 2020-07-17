@@ -109,6 +109,7 @@ p, a, li, blockquote, input, select {
 }
 .search input {
     width: 300px;
+    font-family: var(--content-font);
     margin-left: var(--page-padding);
 }
 .search button {
@@ -119,7 +120,7 @@ p, a, li, blockquote, input, select {
     cursor: pointer;
     font-family: var(--heading-font);
     font-size: 24px;
-    width: 250px;
+    width: 200px;
 }
     
 
