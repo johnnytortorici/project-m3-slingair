@@ -107,6 +107,21 @@ p, a, li, blockquote, input, select {
     width: 210px;
     margin-left: var(--page-padding);
 }
+.search input {
+    width: 300px;
+    margin-left: var(--page-padding);
+}
+.search button {
+    margin-left: var(--page-padding);
+    background: var(--alabama-crimson);
+    border-color: transparent;
+    color: #fff;
+    cursor: pointer;
+    font-family: var(--heading-font);
+    font-size: 24px;
+    width: 250px;
+}
+    
 
 input, select {
     font-size: 24px;
