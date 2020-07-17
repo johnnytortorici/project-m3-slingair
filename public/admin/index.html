@@ -14,9 +14,15 @@
                 <a href="/search" target="_self">View Reservation</a>
                 <a href="/admin" target="_self">Admin</a>
             </header>
+            <div class="flight-select search">
+                <form onsubmit="handleAdmin(event)">
+                    <label for="passcode">Passcode :</label>
+                    <input name="passcode" id="passcode" type="text" placeholder="passcode" required />
+                    <button>View All</button>
+                </form>
+            </div>
             
             <div class="admin">
-                <h2>Reservation List</h2>
                 <ul class="reservations" id="reservations">
 
                 </ul>

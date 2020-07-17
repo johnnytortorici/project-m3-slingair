@@ -30,7 +30,8 @@ const handleViewReservation = (req, res) => {
 };
 
 const handleAdmin = (req, res) => {
-    res.status(200).json({ status: 200, reservations: reservations });
+    const passcode = 'admin';
+    res.status(200).json({ status: 200, reservations: reservations, passcode: passcode });
 };
 
 const handleUserSubmit = (req, res) => {
